@@ -39,7 +39,7 @@ jobs:
           echo '${{ toJson(github) }}'
       - name: display input name
         run: |
-          echo ${{ inputs.name }}
+          echo "inputs.name: ${{ inputs.name }}"
       - name: display access token
         run: |
-          echo ${{ secrets.access_token }}
+          echo "access token: ${{ secrets.access_token }}""
