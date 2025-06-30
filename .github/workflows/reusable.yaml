@@ -1,6 +1,15 @@
 name: reusable
 
 on: 
+  workflow_dispatch:
+    inputs:
+      name: 
+        default: 'default name'
+    secrets: 
+      access-token:
+        default: 'default access token'
+
+        
   workflow_call:
     inputs:
       name:
