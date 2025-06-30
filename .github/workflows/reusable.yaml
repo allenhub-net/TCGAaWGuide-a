@@ -1,0 +1,36 @@
+name: reusable
+
+on: 
+  workflow_call:
+    inputs:
+      name:
+        description: "who"
+        type: string
+        default: 'mallen'
+        required: true
+
+    secrets:
+      access-token:
+        description: 'secret'
+        required: true
+
+jobs:
+  checkout:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          ls -la
+
+  log-context-and-inputs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: display github context
+        run: |
+          echo '${{ toJson(github) }}'
+      - name: display input name
+        run: |
+          echo ${{ inputs.name }}
+      - name: display access token
+        run: |
+          echo ${{ secrets.access_token }}
