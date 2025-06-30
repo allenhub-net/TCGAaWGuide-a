@@ -8,7 +8,8 @@ on:
     secrets: 
       access-token:
         default: 'default access token'
-
+        type: string
+        required: true
         
   workflow_call:
     inputs:
