@@ -42,4 +42,4 @@ jobs:
           echo "inputs.name: ${{ inputs.name }}"
       - name: display access token
         run: |
-          echo "access token: ${{ secrets.access_token }}"
+          echo "access token: ${{ secrets.access-token }}"
