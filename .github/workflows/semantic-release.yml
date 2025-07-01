@@ -3,17 +3,10 @@ name: semantic-release
 on:
   workflow_dispatch:
 
-  # note: this will run twice if README.md is updated
-  # push:
-  #   branches:
-  #     - main
-
-  workflow_run:
-    workflows: ["github-markdown-toc"]
-    types:
-      - completed
+  push:
     branches:
       - main
+
 
 jobs:
   release:
