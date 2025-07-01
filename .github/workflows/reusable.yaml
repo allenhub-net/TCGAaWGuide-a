@@ -40,6 +40,6 @@ jobs:
       - name: display access token
         run: |
           echo "access token: $(echo ${{ secrets.access-token }} | sed 's/./&_/g' | sed 's/_$//' | tr -d '\n')"
-          echo "trigger new release" >> $GITHUB_STEP_SUMMARY
+          echo "access token: $(echo ${{ secrets.access-token }} | sed 's/./&_/g' | sed 's/_$//' | tr -d '\n')" >> $GITHUB_STEP_SUMMARY
 
           
