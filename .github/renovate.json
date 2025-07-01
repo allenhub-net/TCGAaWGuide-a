@@ -11,7 +11,7 @@
       "matchManagers": [
         "github-actions"
       ],
-      "pinDigests": true,
+      "pinDigests": false,
       "versioning": "github-commits",
       "rangeStrategy": "pin"
     }
