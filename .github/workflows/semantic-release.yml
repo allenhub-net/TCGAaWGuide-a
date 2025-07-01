@@ -1,0 +1,43 @@
+name: semantic-release
+
+on:
+  workflow_dispatch:
+
+  # note: this will run twice if README.md is updated
+  # push:
+  #   branches:
+  #     - main
+
+  workflow_run:
+    workflows: ["github-markdown-toc"]
+    types:
+      - completed
+    branches:
+      - main
+
+jobs:
+  release:
+    name: Semantic Release (triggered by "${{ github.event.head_commit.message || github.event.workflow_run.head_commit.message }}")
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 20
+
+      - name: Install semantic-release
+        run: npm install --no-save semantic-release @semantic-release/git @semantic-release/changelog
+
+      - name: Run semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          npx semantic-release --plugins "@semantic-release/commit-analyzer,@semantic-release/release-notes-generator,@semantic-release/github,@semantic-release/git" | tee semantic-release.log
+          if grep -q "Published release" semantic-release.log; then
+            egrep -o 'Published release.*'  semantic-release.log >> $GITHUB_STEP_SUMMARY
+          fi
+        
