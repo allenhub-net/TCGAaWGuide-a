@@ -6,13 +6,8 @@ on:
       name: 
         description: "Name input"
         default: 'default name'
-        
-    secrets:
-      access-token:
-        description: 'secret'
-        required: true
-        
-workflow_call:
+               
+  workflow_call:
     inputs:
       name:
         description: "who"
