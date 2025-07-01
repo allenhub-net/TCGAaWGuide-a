@@ -1,0 +1,23 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "dependencyDashboardAutoclose": true,
+  "dependencyDashboard": true,
+  "dependencyDashboardApproval": false,
+  "packageRules": [
+    {
+      "matchManagers": [
+        "github-actions"
+      ],
+      "pinDigests": false,
+      "versioning": "github-commits",
+      "rangeStrategy": "pin"
+    }
+  ],
+  "baseBranches": [
+    "main"
+  ],
+  "prHourlyLimit": 20
+}
